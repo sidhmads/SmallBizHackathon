@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div
+    h1='Police'
+    table
+      thead
+        tr
+          - for (var i of Object.keys(result.police[0])) {
+            th #{i}
+          - }
+    #{JSON.stringify(result.police)}
+    //- ul
+    //-   - for (var i=1; i<=x; i++) {
+    //-     li #{results.police}
+    //-   - }
