@@ -14,7 +14,7 @@ const text = 'Hello from Nexmon';
 var api_uri = "https://sandbox-quickbooks.api.intuit.com/v3/company/"
 var publisher_one = {
   realmId: "123146178900094",
-  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..B7Sfz6jXcRZZdW67F-V7gQ.mbPCrErYm9rmrqski1wJv0kevYvDYOE0KIGPFJGo63KQR2lbIKoPYA3iSCD0odsWRMRWkOS0N07tyX4_S9R9qXyA4_7MHOAGCoIDJBgmjdW1so8QUf4l3TBfITwaEvkFInLA4M-KCv5uYQ5Aqid6zgMgTwOtEFvx90lf7Kc49VwjTMTHdsEJWsMvWr5b9kw8vdFIuAcMYDRbxopL4a-Pz6rNV4V2Km3-eMQrrY4q7KxeEYyeuX30Sy6jUEE_H_OKf-KDILni0Sc2n-9mvlTTtQRu3LurZRA2UbP68npQGh1uefINmIuyGjU0sd0Ud5ucLjX3YL3pXXu9S5SQ4Y0n0gzyjDcSQZPYXIo_HdTV9YGxAFADG-iwXOXKvdC7w2L0qfZ7LJ1QSWYHAFnWJVsVIlDAgaXmYbIN8ErhmJj6WTUF4o_ybXmT5yqTOHtxHn9mMlbe29jASTgKqjAzxx6F7o3i8u3nDnmDP3Sshkj-Ae6zyDXTd8iYiofUujk9gjbXXfd384stCaGu6MTjTsaqQ_k-lpX-CwXs0ftzhVkngcNyr1ABySmHMpDHxTgumv07qjoWdWKJOyaQc0Hg_E7wY2m9zZrNZaT8PnwjGOnL4sp05pPOKOK0ueAVl01XBAS-3e6diiYXT6AHlr9iYudVF7dNVINJA12XpXe4N6UvDK0wP3bYpDapm3SP9bf608Cn._AJjbAaQq5KtmZoxoRm4Iw"
+  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..SBMTWLQe3tG06P4LpW-FUw.Zq1DyhLBlT8wKrTVAoTKCP9-0bhzKlJI_PhuoO-I1ltLW6yCNpr5igkWaukKFTJFC7K30jHfUYdwtY-2hlBFnLuxsGcjnbu_wVK5QCbn393gp1eyOBM2pqFARKP3-4rzSKR55rKaTtRBRMF99Gmvlb3WFquD0Ch8C5E4AzJiLk5gSBnBl4QFGWDcA0w-oO5fNPbrIzpgbFXoeZz9rdwv6jrITjAdFj5Eh5UQM7mXAxVxZzC1B8b5xjKDVnaJABAZalPh4wpxJeIIw_DPKV7SjmqtISKLspMvYuCoVHpxzJS5QgA-ygTygV_3uTa8RFYEL3YQIjKQrFjsTPTSr6qyTtG5KSl4Tr9TkA7wJXmA0IW551gu3ubaD5LzsKLwnJykiiasdFohQeo8pl_OlajDNRqaXgRZR7Qe3CgQIrNdyHF-Zw3Up4jLk2egQ1hBdhvxHeR6qR7gA-p6kpWMV0nPR_UGKKKy98QWXzVYci6Mz-aQcLoBsYHlBFeolrOCwLUSVLVOhuBqBD3xYlFVRIh4VGVA0Ege2Fm_xvnzEU_8gAPuW8N7IUmsYaDj29-R8YBdQ42aFMWVszVmpxDcsq_JjofScc3Vo-Js1VdASp8Tf4DaB0cFhEVH1e_Z-I0uAIQ-O5r5asccf-PeqrwQ-Ps-i1E6t2Rl0Nzvi0GmZTZcpoxKCE-h07f_DcQKPHOariwL.xnAieo4IsROKMghujtOKlw"
 }
 var publisher_sales_line = {
   "DetailType": "SalesItemLineDetail", 
@@ -41,7 +41,7 @@ var publisher_one_salesReceipt = {
 }
 var publisher_two = {
   realmId: "123146197851304",
-  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..BVr7hmrb7j7D-WsM9O-DDQ.kp6nXkf8vmrWy5Yn4DaJolHMfHWMl4SBFFDw2QIOBVmyeWe-IGyJT4ubpf6ARZ-re8TY7HyVg2nbIMLdh7v4ehZo6fSVV4EBAATl5GbLeouNPBLu8oMGJEzpizXgssct2iAExnpTta9HUYDH_zZmP8UIXB2pJVDsFmfVp0zS5NmYXYxVL9BZtUp6RTx8wVGPktYByE7_MOtNHsHQRicgE2vNtNKSYXiUGzE9VaCD1hmZyV6ElYqmnjid21booCJhhCEWc2t6gzyuy0kMI8erjTCwi0huG_IeIFoKszWfxJMZDGtmAtVgyDxMJmbYwaCys3B0SkA_Ffb0efqElmYxsCJdTG4LnYAIFc2SrRi96zJdOakArLXMxBrkUQNFO6fCE3BNDs1WoWcyAD1r1oxy5bQL92z2cMstYAN6MUWT0hZy2YE4r7bf_M-gR5e2vg6Jhc_2o9frZzWFk2uBlOshe_6IV9qmyDxOcTp9jSCJOg9Cq63q46GEplBgSqE0CJ_i4ZLcdp9QU0J2nYk18Ge25ng-yOBgCc4u-DQaGl3YrhDZOoAQRqeoOD-zy-npYmSthqTrwNEsbrGj-5yv7lL6LHvzA6Ah_NOQ70FsWCdGMPSxpNNZTDj9mmSShzFRem2vlhTzEoLeb-xH9g4O-W3RhbLuB_sC9jwQvLkpV9D73vTTsHw9P5UKB5am_8Mncd6G.hH_L9FzpLP-u3N4TdNrb1Q"
+  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..IiNnFBXQJZh8UxokirIJUg.Gs-EbHfgC0JfpW3iYSEQG3sdTSub5i9VW27sqq5lFm9L0Fx9ZJvgV_0VG3CG5QYz3Gb_FTGOQc_z8YjoySYXDwwkkmNSfAgOZw1p9fQ9s1Xc4NA9Rm8ywkjGwLAenYOGI1meQGUM6ZgqgSouiLQT4akXUhCJUEsMLK175Xc2nGDfYeejgI0xWeQM1InBw_b1mLe4E3n4fFFR0FfXxOMwx6_rL3pjoY0kcIaULhXb0zlIK0dmCPfB3Kb-q50e0jCtL6nEMJmDR6AWbGCaEET5iErr0juaLNnNWCyKTg9fNp6o56fAHdcGAkyw5pcpeOPBRR5OLMSRxHFuNyK-vBn2eO6DfzGXV91vg9OWi-TajAqb-qGWzTS71aT1-g3cqe_SeEOFOux03Bmu0_nVHv1ruovDNmgEOWY3iWhp40qWr9eAt51DKmHB-sGFkf2RicDk1hcfsm-QICugk7rBYp3B6OuJS226aDw7_Ln84G7rkKm8L02dWAzzqF6IfuBNG0a_9ifIUQga5Buv_IKY91Pg4x_W6ZZ9oe1UciVXEgQ4M6llCDdpuYwElOTvpR2jC5mD-W1kEizd7uH0q_f_-c90gclNkzgyf40ewQGGX1RxXAvsi3YUtm41eBtBV1rlm0jmU7QfWiDghRlLuiEnBR9sZMsXuvdJWfe8b2y_Sw3ZEhzzp55MgZKLzko0Ux_wIX2a.GdZ1UsgAfa8aSiLXa08VOw"
 }
 var publisher_two_salesReceipt = {
   "Line": [],
@@ -216,15 +216,15 @@ router.get('/products', async function (req, res) {
   var pubOne = await getQuery(publisher_one, "Item where type='Inventory'");
   for (var item of pubOne['Item']) {
     var name = item['Name'];
-    var quantity = item['QtyOnHand'];
-    var price = item['UnitPrice'];
+    var quantity = parseInt(item['QtyOnHand']);
+    var price = parseFloat(item['UnitPrice']);
     result['Publisher_1'].push({item: name, quantity: quantity, price: price});
   }
   var pubTwo = await getQuery(publisher_two, "Item where type='Inventory'");
   for (var item of pubTwo['Item']) {
     var name = item['Name'];
-    var quantity = item['QtyOnHand'];
-    var price = item['UnitPrice'];
+    var quantity = parseInt(item['QtyOnHand']);
+    var price = parseFloat(item['UnitPrice']);
     result['Publisher_2'].push({item: name, quantity: quantity, price: price});
   }
   res.json(result);
