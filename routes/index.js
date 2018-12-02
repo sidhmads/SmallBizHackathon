@@ -226,7 +226,7 @@ router.get('/products', async function (req, res) {
 });
 
 router.get('/items', async function(req,res) {
-  var body = demand_one_post_request;
+  var body = req.body;
   var postPromises = [];
   var items_from_one = [];
   var items_from_two = [];
