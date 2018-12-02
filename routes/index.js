@@ -41,7 +41,7 @@ var publisher_one_salesReceipt = {
 }
 var publisher_two = {
   realmId: "123146200068854",
-  token: " eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..XeK0TzLOZ4sZ-JuhqiHx0g.NEVv8kOJjTDZ7VEiUH78e4wms-GBFgAN5LKfdegzgBmZFtHEtINeiHZiwfk3bK2EmiGpGJIy0TePb3Pl5DterC7ke2ogp51mDvL31a5jwtcYuK8Ax8YYLBPP8rrI_ZEAg5_0xuj_q2ZQSP2LcaInCdFnmzE74VcKpUodC4SiA49JuYWYePXCOwyOPmoyqZtJWHBESqS1qyiXzEySw6stRVWUJyZG_Dr0TMjVmHRON8kfGxVBbdGg8qsF2hREkYVh8oC9Li_hSdrmBfm8azKeYjZadGEp-U-hX7k7hyekSld_CN_dqSVRt8Zikmg812X3ycGKniZZIWKokadz0u4d_zoLp5a6A8zUCe-oVMazDZJdqOq_mPUXKYyphVlL0fIyV8inlAIqmoXx4KRrihyaXnD7Hzsw22ZqNo5a9grKcn0YzYXc9um5q_y6oXrXIRv8qlXtmzh69Hz814wx5b9dFptXc7KILv3Y2OC78pKNpKBfGhgmsenp5yb1AEsraSB2DQFwq8T_ytG4AGrvmS7h_pf8EC5xlgu1fwIGq2gsp_lMt_k65bSWrVp5npMnJTB0rkIGb01c_EL4qH5CDBZlo2U3uvCDWH4xxMC6HQs9ztfYB3N03nIq-cUs-PXQi7dwW96SUFBebTHiCHm8USOdXDXOQbtyAC1OX4V3_EbhFay-6tkWXH7YFUEJAxTPP50A.LD59EsIE0S5g5yAi0y38RQ"
+  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..XeK0TzLOZ4sZ-JuhqiHx0g.NEVv8kOJjTDZ7VEiUH78e4wms-GBFgAN5LKfdegzgBmZFtHEtINeiHZiwfk3bK2EmiGpGJIy0TePb3Pl5DterC7ke2ogp51mDvL31a5jwtcYuK8Ax8YYLBPP8rrI_ZEAg5_0xuj_q2ZQSP2LcaInCdFnmzE74VcKpUodC4SiA49JuYWYePXCOwyOPmoyqZtJWHBESqS1qyiXzEySw6stRVWUJyZG_Dr0TMjVmHRON8kfGxVBbdGg8qsF2hREkYVh8oC9Li_hSdrmBfm8azKeYjZadGEp-U-hX7k7hyekSld_CN_dqSVRt8Zikmg812X3ycGKniZZIWKokadz0u4d_zoLp5a6A8zUCe-oVMazDZJdqOq_mPUXKYyphVlL0fIyV8inlAIqmoXx4KRrihyaXnD7Hzsw22ZqNo5a9grKcn0YzYXc9um5q_y6oXrXIRv8qlXtmzh69Hz814wx5b9dFptXc7KILv3Y2OC78pKNpKBfGhgmsenp5yb1AEsraSB2DQFwq8T_ytG4AGrvmS7h_pf8EC5xlgu1fwIGq2gsp_lMt_k65bSWrVp5npMnJTB0rkIGb01c_EL4qH5CDBZlo2U3uvCDWH4xxMC6HQs9ztfYB3N03nIq-cUs-PXQi7dwW96SUFBebTHiCHm8USOdXDXOQbtyAC1OX4V3_EbhFay-6tkWXH7YFUEJAxTPP50A.LD59EsIE0S5g5yAi0y38RQ"
 }
 var publisher_two_salesReceipt = {
   "Line": [],
@@ -209,18 +209,22 @@ router.get('/products', async function (req, res) {
     "Publisher_2":[]
   }
   var pubOne = await getQuery(publisher_one, "Item where type='Inventory'");
-  for (var item of pubOne['Item']) {
-    var name = item['Name'];
-    var quantity = parseInt(item['QtyOnHand']);
-    var price = parseFloat(item['UnitPrice']);
-    result['Publisher_1'].push({item: name, quantity: quantity, price: price});
+  if(pubOne) {
+    for (var item of pubOne['Item']) {
+      var name = item['Name'];
+      var quantity = parseInt(item['QtyOnHand']);
+      var price = parseFloat(item['UnitPrice']);
+      result['Publisher_1'].push({item: name, quantity: quantity, price: price});
+    }
   }
   var pubTwo = await getQuery(publisher_two, "Item where type='Inventory'");
-  for (var item of pubTwo['Item']) {
-    var name = item['Name'];
-    var quantity = parseInt(item['QtyOnHand']);
-    var price = parseFloat(item['UnitPrice']);
-    result['Publisher_2'].push({item: name, quantity: quantity, price: price});
+  if(pubTwo) {
+    for (var item of pubTwo['Item']) {
+      var name = item['Name'];
+      var quantity = parseInt(item['QtyOnHand']);
+      var price = parseFloat(item['UnitPrice']);
+      result['Publisher_2'].push({item: name, quantity: quantity, price: price});
+    }
   }
   res.json(result);
 });
