@@ -19,6 +19,9 @@ var publisher_one = {
 var publisher_sales_line = {
   "DetailType": "SalesItemLineDetail", 
   "SalesItemLineDetail": {
+    "TaxCodeRef": {
+      "value": "NON"
+    }, 
     "Qty": NaN, 
     "UnitPrice": NaN, 
     "ItemRef": {
@@ -33,7 +36,8 @@ var publisher_one_salesReceipt = {
   "CustomerRef": {
     "value": "70",
     "name": "QuickMarket"
-  }
+  },
+  "GlobalTaxCalculation": "NotApplicable"
 }
 var publisher_two = {
   realmId: "123146197851304",
@@ -44,7 +48,8 @@ var publisher_two_salesReceipt = {
   "CustomerRef": {
     "value": "58",
     "name": "QuickMarket"
-  }
+  },
+  "GlobalTaxCalculation": "NotApplicable"
 }
 var demand_one = {
   realmId: "123146197847929",
@@ -226,7 +231,7 @@ router.get('/products', async function (req, res) {
 });
 
 router.get('/items', async function(req,res) {
-  var body = demand_one_post_request;
+  var body = req.body;
   var postPromises = [];
   var items_from_one = [];
   var items_from_two = [];
@@ -236,7 +241,7 @@ router.get('/items', async function(req,res) {
   };
 
   for(var item of body['Publisher_1']) {
-    allDemand['Publisher_1'][item['item']] = item['quantity']
+    allDemand['Publisher_1'][item['item'].toString()] = item['quantity']
     demand_one_item_template['QtyOnHand'] = item['quantity'];
     demand_one_item_template['PurchaseCost'] = item['price'];
     demand_one_item_template['Name'] = item['item'];
@@ -244,7 +249,7 @@ router.get('/items', async function(req,res) {
     postPromises.push(postQuery(demand_one, demand_one_item_template, 'item'));
   }
   for(var item of body['Publisher_2']) {
-    allDemand['Publisher_2'][item['item']] = item['quantity']
+    allDemand['Publisher_2'][item['item'].toString()] = item['quantity']
     demand_one_item_template['QtyOnHand'] = item['quantity'];
     demand_one_item_template['PurchaseCost'] = item['price'];
     demand_one_item_template['Name'] = item['item'];
@@ -265,7 +270,7 @@ router.get('/items', async function(req,res) {
     for (var purchasedItem of result) {
       var temp = JSON.parse(JSON.stringify(demand_one_line))
       temp['ItemBasedExpenseLineDetail']['Qty'] = purchasedItem.quantity;
-      temp['ItemBasedExpenseLineDetail']['UnitPrice'] = purchasedItem.UnitPrice;
+      temp['ItemBasedExpenseLineDetail']['PurchaseCost'] = purchasedItem.UnitPrice;
       temp['ItemBasedExpenseLineDetail']['ItemRef']['value'] = purchasedItem.value.toString();
       temp['ItemBasedExpenseLineDetail']['ItemRef']['name'] = purchasedItem.name;
       temp['Amount'] = purchasedItem.UnitPrice * purchasedItem.quantity;
@@ -275,11 +280,10 @@ router.get('/items', async function(req,res) {
         pub_two['Line'].push(temp);
       }
     }
-    // expensePromises.push(postQuery(demand_one, pub_one, 'purchase'));
-    // expensePromises.push(postQuery(demand_one, pub_two, 'purchase'));
+    expensePromises.push(postQuery(demand_one, pub_one, 'purchase'));
+    expensePromises.push(postQuery(demand_one, pub_two, 'purchase'));
     Promise.all(expensePromises).then(async function () {
       var salesPromises = [];
-      // res.json(demandOne);
       var pubOne = await getQuery(publisher_one, "Item where type='Inventory'");
       var pubTwo = await getQuery(publisher_two, "Item where type='Inventory'");
       
@@ -291,10 +295,9 @@ router.get('/items', async function(req,res) {
         temp['SalesItemLineDetail']['ItemRef']['name'] = item['Name'];
         temp['SalesItemLineDetail']['ItemRef']['value'] = item['Id'].toString(); 
         if (items_from_one.includes(item['Name'])) {
-          console.log(allDemand['Publisher_1'][item['Name']]);
           temp['SalesItemLineDetail']['Qty'] = allDemand['Publisher_1'][item['Name']];
           temp['Amount'] = parseInt(allDemand['Publisher_1'][item['Name']]) * parseInt(item['UnitPrice']);
-          one['Line'].push(temp)
+          one['Line'].push(temp);
         }
       }
       for (var item of pubTwo['Item']) {
@@ -305,13 +308,12 @@ router.get('/items', async function(req,res) {
         if (items_from_two.includes(item['Name'])) {
           temp['SalesItemLineDetail']['Qty'] = allDemand['Publisher_2'][item['Name']];
           temp['Amount'] = parseInt(allDemand['Publisher_2'][item['Name']]) * parseInt(item['UnitPrice']);
-          two['Line'].push(temp)
+          two['Line'].push(temp);
         }
       }
-
       salesPromises.push(postQuery(publisher_one, one, 'salesreceipt'));
-      // salesPromises.push(postQuery(publisher_two, two, 'salesreceipt'));
-      Promise.all(expensePromises).then(async function () {
+      salesPromises.push(postQuery(publisher_two, two, 'salesreceipt'));
+      Promise.all(salesPromises).then(async function () {
         res.json(pubOne);
       });
     });
