@@ -225,7 +225,7 @@ router.get('/products', async function (req, res) {
   res.json(result);
 });
 
-router.get('/items', async function(req,res) {
+router.post('/items', async function(req,res) {
   var body = req.body;
   var postPromises = [];
   var items_from_one = [];
@@ -313,7 +313,7 @@ router.get('/items', async function(req,res) {
       salesPromises.push(postQuery(publisher_one, one, 'salesreceipt'));
       salesPromises.push(postQuery(publisher_two, two, 'salesreceipt'));
       Promise.all(salesPromises).then(async function () {
-        res.json(pubOne);
+        res.send({status: 200});
       });
     });
   });
