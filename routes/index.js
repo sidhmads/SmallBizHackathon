@@ -14,15 +14,41 @@ const text = 'Hello from Nexmon';
 var api_uri = "https://sandbox-quickbooks.api.intuit.com/v3/company/"
 var publisher_one = {
   realmId: "123146178900094",
-  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..3c6gZzUlYIS_b5Q-kpOj7Q.aH0VkKOVerwPLZjHaIhGwS3TwuiemKEA7aKF2nDf_oD7K3bHY3dQykmqAH4YQlbToX67XuGhNrWs90hljFF1rYtX7z_-_o0n_aPcHPTarjDzIDKGLTvnVIFnQ2VGXFx_vLRhEHYyQ05l8_uBQkOxIcH_KmAZXjqW0_ieHS8tRN5Zes5dbXGQqMecgM2_V94I7A5UK89dVt3C_gNUvHib700WV1HonE1D8cutpkJSKMw4cGGW0yRMS-KcU1XRB7nElog6FMXfQ6ehUBOF72LuDB3vKp9X-40kXkK_s5pSsGI7ZDqez_GOf3qT3OBdAlLmkmKlq92bJ9ssHSj8e6d4bNNcSQZWPy-3LYj8fPRemZu55eZ1pyOxh6a0GJFT4qz5qeYZbvDIXqA7dpb6bwatRn8YIIJdOeRfMNi1mIhBLAWcpKFNtkmX-nR2Fvav4g3WBHV2odX4PdMg-ckFoKmfNQxkUvghEU3vP9IOIOSkiaHaqHEGUMWiiRu8ws1KLLce23SvNQi_4lsyRtmGbu6hV28cTR2wUltYN16vEacrj4cKDTYDH-xB_Sqgjitg70n5uCtL5wudXxYIE-YZWWPjqSlGvY8J64QLaQv-Ye_21hKTBA351cPud8z4XrAfvk9E5S-wrybndkb74ErQfwBaRprxj2Urd0dS8KNRO_lNI6mWEfXyr5tA3aqjyJhHSHF-.9G0bhCrPPTLg-GYXAwNWcQ"
+  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..B7Sfz6jXcRZZdW67F-V7gQ.mbPCrErYm9rmrqski1wJv0kevYvDYOE0KIGPFJGo63KQR2lbIKoPYA3iSCD0odsWRMRWkOS0N07tyX4_S9R9qXyA4_7MHOAGCoIDJBgmjdW1so8QUf4l3TBfITwaEvkFInLA4M-KCv5uYQ5Aqid6zgMgTwOtEFvx90lf7Kc49VwjTMTHdsEJWsMvWr5b9kw8vdFIuAcMYDRbxopL4a-Pz6rNV4V2Km3-eMQrrY4q7KxeEYyeuX30Sy6jUEE_H_OKf-KDILni0Sc2n-9mvlTTtQRu3LurZRA2UbP68npQGh1uefINmIuyGjU0sd0Ud5ucLjX3YL3pXXu9S5SQ4Y0n0gzyjDcSQZPYXIo_HdTV9YGxAFADG-iwXOXKvdC7w2L0qfZ7LJ1QSWYHAFnWJVsVIlDAgaXmYbIN8ErhmJj6WTUF4o_ybXmT5yqTOHtxHn9mMlbe29jASTgKqjAzxx6F7o3i8u3nDnmDP3Sshkj-Ae6zyDXTd8iYiofUujk9gjbXXfd384stCaGu6MTjTsaqQ_k-lpX-CwXs0ftzhVkngcNyr1ABySmHMpDHxTgumv07qjoWdWKJOyaQc0Hg_E7wY2m9zZrNZaT8PnwjGOnL4sp05pPOKOK0ueAVl01XBAS-3e6diiYXT6AHlr9iYudVF7dNVINJA12XpXe4N6UvDK0wP3bYpDapm3SP9bf608Cn._AJjbAaQq5KtmZoxoRm4Iw"
+}
+var publisher_sales_line = {
+  "DetailType": "SalesItemLineDetail", 
+  "SalesItemLineDetail": {
+    "Qty": NaN, 
+    "UnitPrice": NaN, 
+    "ItemRef": {
+      "name": "", 
+      "value": ""
+    }
+  }, 
+  "Amount": NaN
+}
+var publisher_one_salesReceipt = {
+  "Line": [],
+  "CustomerRef": {
+    "value": "70",
+    "name": "QuickMarket"
+  }
 }
 var publisher_two = {
   realmId: "123146197851304",
-  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..Cb3SrrJqXkzFG9x5aSuVaA.puj2fD-LOsjq65J0BkoUMKwd1ayBWzfrwLjF604zI8adu9q_ejGXegaRQjGOmsHXA6fKyxNYQF2rzGxRrWlic_v0Ofz71PgZ-3ZYmvU89kPKU7TYsaefbtqIjhtY5e5bowvA3z8X4sLPhABdwPExgeZCqbigIgk7iDXlDXQzJToLA3ubVNiZl1ppDQ_dfdXX-s-DSh5tqohJ1qwROBaE20JQn4cIezvitIxRpWbgEOFenBH7UuxXSNV6cXCtEXiYZeRl0gjn-Meplp6LeV8tc1wUR_BLMAoSMD5oY5LhiCJOKMmhol0CHJvKCik6q31SZlcfkUbkMpcKFyxYDjaOy0tDF4w6-9LP_84aB8kuJuV0nA_vMk0GUbEE3Hmf5SsPxAyzQhVVuHJOUi3wg9yhhVjyJHRGo6S5r0Dola6SLMIPfoDc-Bs38wYC84hC8zffZy9c3tdMjndko0xL95xj7qCxllo_WRvYvf9iSFIyZuAkVwldo2er_iGdCm9994Ve8pl8Uy8rpsEVZqeNMIEOtIz7oLYc9q7NuxXqoQv31oPjCwVgRDyyGVwHrlvNuC3nH66WpO6eDlHSnCrshirgn_75aG6tJUzEHws9xqypXoRaqccFw2q6dmPInHvJfrmnEm4j_OuZrzaPWe3GPWXxTKstH26RuEkWI5HsWw8dFpfZDdXIzG75m9u28J60bYDy.k9L5dwrA_gYbHMADLzlSuA"
+  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..BVr7hmrb7j7D-WsM9O-DDQ.kp6nXkf8vmrWy5Yn4DaJolHMfHWMl4SBFFDw2QIOBVmyeWe-IGyJT4ubpf6ARZ-re8TY7HyVg2nbIMLdh7v4ehZo6fSVV4EBAATl5GbLeouNPBLu8oMGJEzpizXgssct2iAExnpTta9HUYDH_zZmP8UIXB2pJVDsFmfVp0zS5NmYXYxVL9BZtUp6RTx8wVGPktYByE7_MOtNHsHQRicgE2vNtNKSYXiUGzE9VaCD1hmZyV6ElYqmnjid21booCJhhCEWc2t6gzyuy0kMI8erjTCwi0huG_IeIFoKszWfxJMZDGtmAtVgyDxMJmbYwaCys3B0SkA_Ffb0efqElmYxsCJdTG4LnYAIFc2SrRi96zJdOakArLXMxBrkUQNFO6fCE3BNDs1WoWcyAD1r1oxy5bQL92z2cMstYAN6MUWT0hZy2YE4r7bf_M-gR5e2vg6Jhc_2o9frZzWFk2uBlOshe_6IV9qmyDxOcTp9jSCJOg9Cq63q46GEplBgSqE0CJ_i4ZLcdp9QU0J2nYk18Ge25ng-yOBgCc4u-DQaGl3YrhDZOoAQRqeoOD-zy-npYmSthqTrwNEsbrGj-5yv7lL6LHvzA6Ah_NOQ70FsWCdGMPSxpNNZTDj9mmSShzFRem2vlhTzEoLeb-xH9g4O-W3RhbLuB_sC9jwQvLkpV9D73vTTsHw9P5UKB5am_8Mncd6G.hH_L9FzpLP-u3N4TdNrb1Q"
+}
+var publisher_two_salesReceipt = {
+  "Line": [],
+  "CustomerRef": {
+    "value": "58",
+    "name": "QuickMarket"
+  }
 }
 var demand_one = {
   realmId: "123146197847929",
-  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..G9z2zHIpnQBIQpNt96EdiA.nrEd2ZumcMFbU4sakfbMlgWdSLOy8QAWV-LQt_WkkrWlLmK8knRK3_C9Qgt46YgIqwKbYLNx0hyHG5gdS4lwNkbR8zyngS9tvKiu-7l-5j7Jj1JdB3XXQA6DPT95Ac_PuFGSl8tHXiQv0WG-MUE4-JXEAGFeISW84ap7ALpMPQHl82T_ugLrERsL-WGaaTHLJeUJ9MaR8TsozsvOYsggOXJoWPv8ehbfNaAidAv22Z3Kp_V9UclDAg_DEnF5pcLQ8K63u6vkrJYthnxR1r_ldImr-GoFxNkb7jRFaHMF7-VdULi4vx7JR6cr4nQxL25bNnyI1j0Kns_IUSyvMWPAcHSsFaXldH7KMa7nvpXfdy12G8Wjw1OMI4NY_Zdsittbcx4hmnDPskr2oVVaS4umd8kP7TRwagQwatPmaQoxaWoBhaqvm_32fZu5ytUNVXelomqfCWp7SN36KEKyfShlgQgsQdctZunAa6YAKoWpcfnZrvYr0CiSEHU3-grsy49vyFdhOD6RvbaWCM52l04AOUQrGOG0c-yYBXoze0HJCzuuvRhNTWPFJoWWG5lbTefX8IxM9eUWPHc6_T-8vfzdmnxUnz5cBYy-vR8U1ZPE33UA3GRSO3MOGQtAu9cSTXegs3UMqkFrEbLHpScItCEKbwuEvAgQ79COAo4x8Y2ChxDEx3RrkOc7vdoHqgxsTGBS.szyELStltPq0ArgzbvYDoA"
+  token: "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..b6GmAJ_JlSGDbQby70cW2A.Q6fps-P1uIORLd08huLbaVoekf4tfl7xFhxbZAxLaNty5dKsy-DstmAAx9xm59vaQxA61nTzkSB9aVPwxuETnl1sT2lt26Xt4qm4d5nrhj8CD4_dRXA-2mC18ziOEmyDc_IpObJlCHM_DsjtGblwaOdnnpoFvcR7MwkAHcOIQclFn2ZRNR7IzABrVZQPw9eNLaTRSy7sHHI6cJC8S7KLjwwl-a4MpFUZD30GOjDeDrIef2BGTu9wwPeuUxFMabEmCMOi1FmUjMUAtUA-1fy62QYwbJdRdcC7uGPpriyfH-bGxdWb_RkppoB5RBG6mN5HBFF3_FQXKj2h-xl_4qJ4fckTutua2JkskLP2NXG8A-jxxtWb_9OJ72Z2Un7AwG-iHUtcq5cxczXHLJvlJ7zzt9yvrbZgLCdw2K2GsWiN780dPTI-QtMIRQINOl3jcMI1B6suGZTyLZVu2v3HK0NxrpZi8fzDwMUdXTIxphKz_l_MqiR-jcYiyRJsXUts-5stZTUkSUzemvlKn4ghBJhrTji-zilKF_0F1iVNGRC9cbjV6OmPcx70W1vO9IbAeXXtQIsXQUYJL8ZBqu-Apv8nLLRY0Hh4dZ64G3-3DDmihlydxL4na9UyCNHoPHrOAfK0hZ0mSZsSp3z4pS550ELP7WIKf5fEf7u4utj7d2NdL11RfQDIeAmODcO2pH_sEBPH._ptmAo_rDFiyNNZjqc7CQw"
 }
 var demand_one_item_template = {
   "TrackQtyOnHand": true, 
@@ -69,8 +95,65 @@ var demand_one_line = {
 }
 
 var demand_one_post_request = {
-  "Publisher_1":[{"item":"Carrot","quantity":8,"price":2},{"item":"Name Badges","quantity":3150,"price":3},{"item":"Name Badges - old","quantity":0,"price":3},{"item":"Guest Book","quantity":20,"price":25},{"item":"Water Bottles - Generic","quantity":550,"price":10},{"item":"Lemon","quantity":100,"price":0}],
-  "Publisher_2":[{"item":"Pump","quantity":25,"price":15},{"item":"Rock Fountain","quantity":2,"price":275},{"item":"Sprinkler Heads","quantity":25,"price":2},{"item":"Sprinkler Pipes","quantity":31,"price":4}]
+    "Publisher_1": [
+        {
+            "item": "Carrot",
+            "quantity": 7,
+            "price": 2
+        },
+        {
+            "item": "Name Badges",
+            "quantity": 3150,
+            "price": 3
+        },
+        {
+            "item": "Name Badges - old",
+            "quantity": 0,
+            "price": 3
+        },
+        {
+            "item": "Guest Book",
+            "quantity": 20,
+            "price": 25
+        },
+        {
+            "item": "Water Bottles - Generic",
+            "quantity": 550,
+            "price": 10
+        },
+        {
+            "item": "Lemon",
+            "quantity": 100,
+            "price": 0
+        }
+    ],
+    "Publisher_2": [
+        {
+            "item": "Carrot",
+            "quantity": 24,
+            "price": 2
+        },
+        {
+            "item": "Pump",
+            "quantity": 25,
+            "price": 15
+        },
+        {
+            "item": "Rock Fountain",
+            "quantity": 2,
+            "price": 275
+        },
+        {
+            "item": "Sprinkler Heads",
+            "quantity": 25,
+            "price": 2
+        },
+        {
+            "item": "Sprinkler Pipes",
+            "quantity": 31,
+            "price": 4
+        }
+    ]
 }
 
 
@@ -145,11 +228,15 @@ router.get('/products', async function (req, res) {
 router.get('/items', async function(req,res) {
   var body = demand_one_post_request;
   var postPromises = [];
-  var inBooks = [];
   var items_from_one = [];
   var items_from_two = [];
+  var allDemand = {
+    'Publisher_1': {},
+    'Publisher_2': {}
+  };
 
   for(var item of body['Publisher_1']) {
+    allDemand['Publisher_1'][item['item']] = item['quantity']
     demand_one_item_template['QtyOnHand'] = item['quantity'];
     demand_one_item_template['PurchaseCost'] = item['price'];
     demand_one_item_template['Name'] = item['item'];
@@ -157,6 +244,7 @@ router.get('/items', async function(req,res) {
     postPromises.push(postQuery(demand_one, demand_one_item_template, 'item'));
   }
   for(var item of body['Publisher_2']) {
+    allDemand['Publisher_2'][item['item']] = item['quantity']
     demand_one_item_template['QtyOnHand'] = item['quantity'];
     demand_one_item_template['PurchaseCost'] = item['price'];
     demand_one_item_template['Name'] = item['item'];
@@ -187,10 +275,45 @@ router.get('/items', async function(req,res) {
         pub_two['Line'].push(temp);
       }
     }
-    expensePromises.push(postQuery(demand_one, pub_one, 'purchase'));
-    expensePromises.push(postQuery(demand_one, pub_two, 'purchase'));
+    // expensePromises.push(postQuery(demand_one, pub_one, 'purchase'));
+    // expensePromises.push(postQuery(demand_one, pub_two, 'purchase'));
     Promise.all(expensePromises).then(async function () {
-      res.json(demandOne);
+      var salesPromises = [];
+      // res.json(demandOne);
+      var pubOne = await getQuery(publisher_one, "Item where type='Inventory'");
+      var pubTwo = await getQuery(publisher_two, "Item where type='Inventory'");
+      
+      var one = JSON.parse(JSON.stringify(publisher_one_salesReceipt))
+      var two = JSON.parse(JSON.stringify(publisher_two_salesReceipt))
+      for (var item of pubOne['Item']) {
+        var temp = JSON.parse(JSON.stringify(publisher_sales_line))
+        temp['SalesItemLineDetail']['UnitPrice'] = item['UnitPrice'];
+        temp['SalesItemLineDetail']['ItemRef']['name'] = item['Name'];
+        temp['SalesItemLineDetail']['ItemRef']['value'] = item['Id'].toString(); 
+        if (items_from_one.includes(item['Name'])) {
+          console.log(allDemand['Publisher_1'][item['Name']]);
+          temp['SalesItemLineDetail']['Qty'] = allDemand['Publisher_1'][item['Name']];
+          temp['Amount'] = parseInt(allDemand['Publisher_1'][item['Name']]) * parseInt(item['UnitPrice']);
+          one['Line'].push(temp)
+        }
+      }
+      for (var item of pubTwo['Item']) {
+        var temp = JSON.parse(JSON.stringify(publisher_sales_line))
+        temp['SalesItemLineDetail']['UnitPrice'] = item['UnitPrice'];
+        temp['SalesItemLineDetail']['ItemRef']['name'] = item['Name'];
+        temp['SalesItemLineDetail']['ItemRef']['value'] = item['Id'].toString(); 
+        if (items_from_two.includes(item['Name'])) {
+          temp['SalesItemLineDetail']['Qty'] = allDemand['Publisher_2'][item['Name']];
+          temp['Amount'] = parseInt(allDemand['Publisher_2'][item['Name']]) * parseInt(item['UnitPrice']);
+          two['Line'].push(temp)
+        }
+      }
+
+      salesPromises.push(postQuery(publisher_one, one, 'salesreceipt'));
+      // salesPromises.push(postQuery(publisher_two, two, 'salesreceipt'));
+      Promise.all(expensePromises).then(async function () {
+        res.json(pubOne);
+      });
     });
   });
 });
